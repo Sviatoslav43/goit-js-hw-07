@@ -26,3 +26,6 @@ function createGalleryItemMarkup(items) {
 
 galleryRef.insertAdjacentHTML("beforeend", createGalleryItemMarkup(galleryItems))
 
+
+
+new SimpleLightbox('.gallery a', { captionsData:"alt", captionDelay:250, close:true, animationSlide: true })
