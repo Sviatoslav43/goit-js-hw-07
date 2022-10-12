@@ -25,11 +25,14 @@ function createGalleryItemMarkup(items) {
       `;
     })
     .join('');
-}
-
+  }
+  
 galleryRef.insertAdjacentHTML("beforeend", createGalleryItemMarkup(galleryItems))
+  
+const photoAddToGallery = document.addEventListener('click', onGallery)
+  
+let modalWindow;
 
-// const photoAddToGallery = document.addEventListener('click',)
 function onGallery(event) {
     event.preventDefault()
 
@@ -37,16 +40,22 @@ function onGallery(event) {
         return
     }
 
-    const modalWindow = basicLightbox.create( 
+  modalWindow = basicLightbox.create( 
             `<img
               class="gallery__image"
               src="${event.target.dataset.source}"
               alt="${event.target.value}"
             />`)
-    modalWindow.show()
-    
+  
+  modalWindow.show() 
+
+
+  window.addEventListener('keydown', onEscapeClose);
+  
 }
 
-galleryRef.addEventListener('click', onGallery)
 
-
+function onEscapeClose(event) {
+  if(event.code ==="Escape")
+    modalWindow.close();
+  }
